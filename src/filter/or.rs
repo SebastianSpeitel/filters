@@ -25,7 +25,7 @@ impl<F> std::ops::DerefMut for Or<F> {
     }
 }
 
-impl<F: Filter<T> + TruthyDefault, T: ?Sized> Filter<T> for Or<F> {
+impl<F: Filter<T>, T: ?Sized> Filter<T> for Or<F> {
     #[inline]
     fn matches(&self, obj: &T) -> bool {
         self.0.iter().any(|f| f.matches(obj))

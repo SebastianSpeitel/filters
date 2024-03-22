@@ -25,7 +25,7 @@ impl<F> std::ops::DerefMut for And<F> {
     }
 }
 
-impl<F: Filter<T> + FalsyDefault, T: ?Sized> Filter<T> for And<F> {
+impl<F: Filter<T>, T: ?Sized> Filter<T> for And<F> {
     #[inline]
     fn matches(&self, obj: &T) -> bool {
         self.0.iter().all(|f| f.matches(obj))
