@@ -4,6 +4,14 @@ use super::{Filter, Optimizable};
 pub struct TextFilter {
     search: Box<str>,
 }
+
+impl TextFilter {
+    /// If the filter matches exactly one string, return that string.
+    pub fn exact(&self) -> Option<&str> {
+        Some(&self.search)
+    }
+}
+
 impl Filter<str> for TextFilter {
     #[inline]
     fn matches(&self, obj: &str) -> bool {
